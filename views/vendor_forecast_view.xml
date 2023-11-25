@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_forecast_form" model="ir.ui.view">
+            <field name="name">vendor.forecast.form</field>
+            <field name="model">vendor.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Forecast">
+                    <header>
+                        <button name="action_confirm" type="object" states="draft" string="Confirm"
+                                class="oe_highlight"/>
+                        <button name="reset_to_draft" type="object" states="confirmed" string="Reset"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="expected_quantity" required="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="forecast_date" required="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_vendor_forecast_tree" model="ir.ui.view">
+            <field name="name">vendor.forecast.tree</field>
+            <field name="model">vendor.forecast</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="expected_quantity"/>
+                    <field name="forecast_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="vendor_forecast_actions" model="ir.actions.act_window">
+            <field name="name">Vendor Forecast</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vendor.forecast</field>
+        </record>
+    </data>
+</odoo>

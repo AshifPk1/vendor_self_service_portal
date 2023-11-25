@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_adjustment_request_form" model="ir.ui.view">
+            <field name="name">vendor.adjustment.request.form</field>
+            <field name="model">vendor.adjustment.request</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Adjustment Request">
+                    <header>
+                        <button name="submit_request" type="object" states="draft" string="Submit Request"
+                                class="oe_highlight"/>
+                        <button name="reset_to_draft" type="object" states="submitted" string="Reset"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="order_id" required="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="adjustment_detail" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <field name="comment" placeholder="Comment"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_vendor_adjustment_request_tree" model="ir.ui.view">
+            <field name="name">vendor.adjustment.request.tree</field>
+            <field name="model">vendor.adjustment.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id" required="1"/>
+                    <field name="adjustment_detail"/>
+                    <field name="comment"/>
+                </tree>
+            </field>
+        </record>
+        <record id="vendor_adjustment_request_actions" model="ir.actions.act_window">
+            <field name="name">Vendor Adjustment Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vendor.adjustment.request</field>
+        </record>
+
+    </data>
+</odoo>

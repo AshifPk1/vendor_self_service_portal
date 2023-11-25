@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="vendor_service_portal_maine_menu" name="Vendor Service Portal"/>
+        <menuitem id="vendor_service_portal_sub_menu" name="Vendor Service Portal" parent="vendor_service_portal_maine_menu"/>
+        <menuitem action="vendor_adjustment_request_actions" id="vendor_adjustment_request_menu"
+                  parent="vendor_service_portal_sub_menu"/>
+        <menuitem action="vendor_forecast_actions" id="vendor_forecast_menu" parent="vendor_service_portal_sub_menu"/>
+
+    </data>
+</odoo>
